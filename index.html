@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Service Provider Profile | Verified by GoodayOn</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --brand:#E21E81; --brand-dark:#c2186f; --brand-soft:rgba(226,30,129,.08);
+  --ink:#1a1e2b; --muted:#6b6f7c; --line:rgba(0,0,0,.07);
+  --bg:#f6f4ef; --card:#fff; --gold:#f5b342;
+  --green:#16a34a; --red:#dc2626;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.45}
+.page{max-width:880px;margin:0 auto;padding:1.25rem 1.25rem 2rem}
+
+/* ── Hero ── */
+.hero{position:relative;background:linear-gradient(135deg,#fff 55%,#fff0f7 100%);border-radius:2rem;padding:2rem;border:1px solid rgba(226,30,129,.12);box-shadow:0 12px 32px -14px rgba(226,30,129,.25);overflow:hidden;margin-bottom:1rem}
+.hero-top{display:flex;gap:2rem;align-items:center}
+.photo{width:150px;height:190px;object-fit:cover;object-position:top;border-radius:1.5rem;background:#e9e6df;box-shadow:0 14px 28px -12px rgba(0,0,0,.25);border:3px solid #fff;flex-shrink:0}
+.hero-info{flex:1;min-width:0}
+.sp-name{font-size:2rem;font-weight:800;letter-spacing:-.02em;line-height:1.15;background:linear-gradient(135deg,var(--brand),var(--brand-dark));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:.35rem}
+.sp-title{font-size:.9rem;font-weight:600;color:var(--muted);margin-bottom:1rem}
+.meta-row{display:flex;flex-wrap:wrap;gap:.5rem}
+.meta-chip{display:inline-flex;align-items:center;gap:.45rem;background:#fff;border:1px solid var(--line);padding:.4rem .8rem;border-radius:40px;font-size:.85rem;font-weight:600}
+.meta-chip i{color:var(--brand);font-size:.8rem}
+.meta-chip.location{background:var(--brand);color:#fff;border-color:var(--brand);box-shadow:0 6px 14px -6px rgba(226,30,129,.6);font-size:.92rem;padding:.5rem 1rem}
+.meta-chip.location i{color:#fff}
+.meta-chip.hidden{display:none}
+.generated{margin-top:.9rem;font-size:.75rem;color:#9a9eac;display:flex;align-items:center;gap:.4rem}
+
+
+/* stats strip */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:1.5rem}
+.stat{background:#fff;border:1px solid var(--line);border-radius:1.2rem;padding:.85rem .5rem;text-align:center}
+.stat .num{font-size:1.5rem;font-weight:800;color:var(--brand);line-height:1.1}
+.stat .txt{font-size:.7rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-top:.2rem}
+.stat.hidden{display:none}
+
+
+
+/* watermark stamp (original design) */
+.watermark-stamp-centered{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-12deg);width:300px;height:auto;z-index:10;pointer-events:none;opacity:.32;filter:drop-shadow(0 4px 8px rgba(0,0,0,.1))}
+.watermark-stamp-centered img{width:100%;height:auto;display:block}
+.page{position:relative;isolation:isolate}
+.hero,.section,.decision{position:relative;z-index:5}
+
+/* hero rows */
+.info-line{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem;margin-top:1rem;font-size:.75rem;color:#9a9eac}
+.info-item{display:inline-flex;align-items:center;gap:.4rem}
+.info-item i{color:#9a9eac}
+.info-pill{background:#E21E81;color:#fff;font-weight:600;padding:.3rem .85rem;border-radius:40px;box-shadow:0 4px 10px -4px rgba(226,30,129,.5)}
+.info-pill i{color:#fff}
+.info-item.hidden{display:none}
+.loc-row{margin-top:.5rem}
+.hero-info .meta-row{margin-bottom:0}
+
+
+/* section cards */
+.section{background:var(--card);border-radius:1.75rem;border:1px solid rgba(226,30,129,.08);box-shadow:0 8px 24px rgba(0,0,0,.025);padding:1.5rem 1.75rem;margin-bottom:1rem}
+.section.hidden{display:none}
+.sec-head{display:flex;align-items:center;gap:.75rem;margin-bottom:1.1rem;padding-bottom:.85rem;border-bottom:1px dashed var(--line)}
+.sec-icon{width:38px;height:38px;border-radius:12px;background:var(--brand-soft);color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:.95rem}
+.sec-title{font-size:1.05rem;font-weight:800;letter-spacing:-.01em}
+.sec-sub{font-size:.78rem;color:var(--muted);font-weight:500}
+.bio-text{font-size:.97rem;line-height:1.7;color:#2c3e44}
+
+/* skill chips */
+.skill-group{margin-bottom:1rem}
+.skill-group:last-child{margin-bottom:0}
+.skill-group.hidden{display:none}
+.group-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem}
+.chip{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem .85rem;border-radius:40px;font-size:.84rem;font-weight:600}
+.chip i{font-size:.7rem}
+.chip.cook{background:#fff1e6;color:#b45f2b}
+.chip.clean{background:#e6f4ea;color:#2e6b3e}
+.chip.nanny{background:#e8f0fe;color:#1f6392}
+.exp-pill{margin-left:auto;background:var(--brand);color:#fff;font-size:.7rem;padding:.15rem .65rem;border-radius:40px;letter-spacing:.2px;text-transform:none}
+
+/* ratings */
+.rating-row{display:grid;grid-template-columns:minmax(0,1fr) 170px;gap:1rem;align-items:center;padding:.65rem 0;border-bottom:1px solid var(--line)}
+.rating-row:last-child{border-bottom:none}
+.r-label{font-size:.9rem;font-weight:500}
+.r-stars{display:flex;align-items:center;justify-content:flex-end;gap:.15rem;font-size:.95rem;white-space:nowrap}
+.r-stars .fas{color:var(--gold)}
+.r-stars .far{color:#d4d4d8}
+.r-num{margin-left:.55rem;background:#f1f0ed;color:var(--brand);font-size:.72rem;font-weight:800;padding:.15rem .55rem;border-radius:30px}
+
+/* timeline */
+.timeline{position:relative;padding-left:1.6rem}
+.timeline::before{content:'';position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--brand),rgba(226,30,129,.15))}
+.tl-item{position:relative;margin-bottom:1.1rem}
+.tl-item:last-child{margin-bottom:0}
+.tl-item::before{content:'';position:absolute;left:-1.6rem;top:.35rem;width:16px;height:16px;border-radius:50%;background:#fff;border:4px solid var(--brand)}
+.tl-card{background:#fbf9f5;border-radius:1rem;padding:.8rem 1rem}
+.tl-role{font-weight:700;font-size:.96rem}
+.tl-inst{display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;font-weight:600;color:var(--brand);margin-top:.15rem}
+.tl-period{font-size:.78rem;color:var(--muted);margin-top:.2rem;display:flex;align-items:center;gap:.35rem}
+.tl-desc{font-size:.86rem;color:#3b4a52;margin-top:.4rem}
+
+/* cooking */
+.meal{margin-bottom:.8rem}
+.meal:last-child{margin-bottom:0}
+.meal.hidden{display:none}
+.meal-label{display:inline-flex;align-items:center;gap:.4rem;background:#fff1f1;color:#b91c6e;padding:.2rem .8rem;border-radius:40px;font-size:.78rem;font-weight:700;margin-bottom:.4rem}
+.meal-value{font-size:.92rem;background:#fbf9f5;border-radius:.9rem;padding:.6rem .9rem;border-left:3px solid #ffb7c5}
+
+/* certs */
+.cert-badges{display:flex;flex-wrap:wrap;gap:.7rem}
+.cert-badge{display:none;align-items:center;gap:.5rem;padding:.55rem 1.1rem;border-radius:100px;font-size:.86rem;font-weight:700}
+.cert-badge.show{display:inline-flex}
+.cert-badge.cooking-cert{background:#fff1e6;color:#b45f2b}
+.cert-badge.cleaning-cert{background:#e6f4ea;color:#2e6b3e}
+.cert-badge.nanny-cert{background:#e8f0fe;color:#1f6392}
+
+/* decision */
+.decision{background:linear-gradient(135deg,#fff 40%,#fff0f7);border:2px solid rgba(226,30,129,.2);border-radius:1.75rem;padding:2rem 1.5rem;text-align:center;margin-bottom:1rem;scroll-margin-top:1rem}
+.decision h2{font-size:1.35rem;font-weight:800;margin-bottom:.4rem}
+.decision p{font-size:.92rem;color:var(--muted);margin:0 auto 1.4rem;max-width:520px}
+.decision .nocall{display:inline-flex;align-items:center;gap:.5rem;background:#fff7e6;color:#8a5a00;font-size:.82rem;font-weight:700;padding:.4rem 1rem;border-radius:40px;margin-bottom:1.25rem}
+.btns{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
+.btns .btn{flex:1 1 220px;max-width:260px;min-width:0;text-align:center;padding:.95rem 1rem;white-space:nowrap}
+.btn{border:none;cursor:pointer;padding:.95rem 2.2rem;border-radius:100px;font:700 1rem 'DM Sans',sans-serif;color:#fff;transition:transform .2s,opacity .2s}
+.btn:hover{transform:translateY(-2px);opacity:.92}
+.btn-approve{background:linear-gradient(135deg,#22c55e,#16a34a);box-shadow:0 6px 16px rgba(34,197,94,.35)}
+.btn-reject{background:linear-gradient(135deg,#ef4444,#dc2626);box-shadow:0 6px 16px rgba(239,68,68,.3)}
+.responded,.submitting{display:none}
+.responded .em{font-size:2.6rem;margin-bottom:.5rem}
+.responded .t{font-size:1.2rem;font-weight:800;margin-bottom:.4rem}
+.responded .m{font-size:.92rem;color:var(--muted)}
+.submitting{color:var(--muted)}
+
+/* modal */
+#confirm-overlay{display:none;position:fixed;inset:0;background:rgba(10,10,10,.75);z-index:9998;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(6px)}
+#confirm-overlay.show{display:flex}
+.confirm-card{background:#fff;border-radius:2rem;padding:2.2rem 1.8rem;max-width:420px;width:100%;text-align:center;box-shadow:0 32px 64px rgba(0,0,0,.25)}
+.confirm-emoji{font-size:3rem;margin-bottom:.6rem}
+.confirm-title{font-size:1.2rem;font-weight:800;margin-bottom:.4rem}
+.confirm-desc{font-size:.88rem;color:var(--muted);margin-bottom:1.2rem}
+.reason-wrap{display:none;text-align:left;margin-bottom:1.2rem}
+.reason-wrap label{font-size:.75rem;font-weight:700;color:#9a9eac;text-transform:uppercase;display:block;margin-bottom:.4rem}
+.reason-wrap label span{color:#ef4444}
+#reject-reason{width:100%;border:1.5px solid #e5e7eb;border-radius:.9rem;padding:.75rem 1rem;font:.9rem 'DM Sans',sans-serif;min-height:90px;resize:vertical;outline:none}
+#reject-reason:focus{border-color:var(--brand)}
+.reason-error{display:none;color:#ef4444;font-size:.78rem;margin-top:.35rem}
+.confirm-actions{display:flex;gap:.7rem;justify-content:center}
+.btn-cancel{background:#f0ede8;color:var(--muted);border:none;cursor:pointer;padding:.75rem 1.7rem;border-radius:100px;font:600 .9rem 'DM Sans',sans-serif}
+.btn-confirm{border:none;cursor:pointer;padding:.75rem 1.7rem;border-radius:100px;font:700 .9rem 'DM Sans',sans-serif;color:#fff}
+
+@media(max-width:680px){
+  .page{padding:.75rem .75rem 1.5rem}
+  .hero{padding:1.25rem}
+  .hero-top{flex-direction:column;align-items:center;text-align:center}
+  .photo{width:120px;height:150px}
+  .meta-row{justify-content:center}
+  .sp-name{font-size:1.65rem}
+  .info-line{justify-content:center}
+  .watermark-stamp-centered{width:220px;opacity:.28;transform:translate(-50%,-50%) rotate(-10deg)}
+  .btns{flex-direction:column;align-items:stretch}
+  .btns .btn{flex:none;max-width:none;width:100%}
+  .stats{gap:.5rem}
+  .stat .num{font-size:1.25rem}
+  .stat .txt{font-size:.62rem}
+  .tl-card{padding:.7rem .8rem}
+  .decision{padding:1.5rem 1.25rem}
+  .btns{padding:0 1.25rem;gap:.8rem}
+  .section{padding:1.2rem 1.1rem}
+  .rating-row{grid-template-columns:1fr;gap:.35rem}
+  .r-stars{justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="watermark-stamp-centered">
+    <img src="https://cdn.prod.website-files.com/676010d97530c2cd3340241e/69d3c48d0007d079af8acc30_Black%20and%20White%20Circle%20Professional%20Stamp%20Logo.png" alt="Verified Stamp">
+  </div>
+
+
+  <!-- ══ HERO ══ -->
+  <header class="hero" id="hero">
+    <div class="hero-top">
+      <img class="photo" id="sp-photo" src="" alt="Service provider photo" onerror="this.style.display='none'">
+      <div class="hero-info">
+        <div class="sp-name" id="sp-name-el"></div>
+        <div class="sp-title" id="sp-service-el"></div>
+        <div class="meta-row">
+          <span class="meta-chip" id="age-chip"><i class="fas fa-cake-candles"></i><span id="sp-age"></span> years</span>
+          <span class="meta-chip" id="lang-chip"><i class="fas fa-language"></i><span id="sp-languages"></span></span>
+        </div>
+        <div class="info-line">
+          <span class="info-item info-pill" id="loc-chip"><i class="fas fa-location-dot"></i> <span id="sp-location"></span></span>
+          <span class="info-item" id="generated-badge"><i class="fas fa-clock"></i> Profile generated <span id="generated-date-display"></span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats" id="stats">
+      <div class="stat" id="stat-exp"><div class="num" id="stat-exp-val"></div><div class="txt">Years experience</div></div>
+      <div class="stat" id="job-sessions-box"><div class="num" id="job-sessions-val"></div><div class="txt">Jobs completed</div></div>
+      <div class="stat" id="customers-served-box"><div class="num" id="customers-served-val"></div><div class="txt">Customers served</div></div>
+    </div>
+  </header>
+
+  <!-- ══ 1. ABOUT ══ -->
+  <section class="section" id="bio-card">
+    <div class="sec-head"><div class="sec-icon"><i class="fas fa-user"></i></div><div><div class="sec-title">About</div><div class="sec-sub">Skill summary</div></div></div>
+    <div class="bio-text" id="bio-text"></div>
+  </section>
+
+  <!-- ══ 2. SKILLS ══ -->
+  <section class="section" id="skills-card">
+    <div class="sec-head"><div class="sec-icon"><i class="fas fa-bolt"></i></div><div><div class="sec-title">Skills</div><div class="sec-sub">What this provider does best</div></div></div>
+    <div class="skill-group" id="grp-cooking">
+      <div class="group-label"><i class="fas fa-utensils"></i> Cooking <span class="exp-pill" id="cooking-exp-pill"></span></div>
+      <div class="chips" id="chips-cooking"></div>
+    </div>
+    <div class="skill-group" id="grp-cleaning">
+      <div class="group-label"><i class="fas fa-broom"></i> Cleaning <span class="exp-pill" id="cleaning-exp-pill"></span></div>
+      <div class="chips" id="chips-cleaning"></div>
+    </div>
+    <div class="skill-group" id="grp-nanny">
+      <div class="group-label"><i class="fas fa-child"></i> Nanny <span class="exp-pill" id="nanny-exp-pill"></span></div>
+      <div class="chips" id="chips-nanny"></div>
+    </div>
+  </section>
+
+  <!-- ══ 4. EXPERIENCE HISTORY ══ -->
+  <section class="section" id="history-card">
+    <div class="sec-head"><div class="sec-icon"><i class="fas fa-briefcase"></i></div><div><div class="sec-title">Experience history</div><div class="sec-sub">Previous roles and workplaces</div></div></div>
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <!-- ══ 5. COOKING PROFILE ══ -->
+  <section class="section" id="cooking-card">
+    <div class="sec-head"><div class="sec-icon"><i class="fas fa-kitchen-set"></i></div><div><div class="sec-title">Cooking profile</div><div class="sec-sub">Menus and specialties</div></div></div>
+    <div class="meal" id="breakfast-item"><div class="meal-label"><i class="fas fa-mug-hot"></i> Breakfast</div><div class="meal-value" id="breakfast-val"></div></div>
+    <div class="meal" id="lunch-item"><div class="meal-label"><i class="fas fa-plate-wheat"></i> Lunch &amp; Dinner</div><div class="meal-value" id="lunch-val"></div></div>
+    <div class="meal" id="special-item"><div class="meal-label"><i class="fas fa-champagne-glasses"></i> Special events</div><div class="meal-value" id="special-val"></div></div>
+    <div class="meal" id="extra-cooking-item"><div class="meal-label"><i class="fas fa-star"></i> Additional skills</div><div class="meal-value" id="extra-cooking-val"></div></div>
+  </section>
+
+  <!-- ══ 3. RATINGS ══ -->
+  <section class="section" id="skill-rating-card">
+    <div class="sec-head"><div class="sec-icon"><i class="fas fa-star"></i></div><div><div class="sec-title">Customer ratings</div><div class="sec-sub">Based on completed Etalem jobs</div></div></div>
+    <div id="rating-container"></div>
+  </section>
+
+  <!-- ══ 6. CERTIFICATIONS ══ -->
+  <section class="section" id="certs-card">
+    <div class="sec-head"><div class="sec-icon"><i class="fas fa-certificate"></i></div><div><div class="sec-title">Certifications</div><div class="sec-sub">Verified training</div></div></div>
+    <div class="cert-badges">
+      <div class="cert-badge cooking-cert" id="cert-cooking">🍳 Cooking Certified</div>
+      <div class="cert-badge cleaning-cert" id="cert-cleaning">🧹 Cleaning Certified</div>
+      <div class="cert-badge nanny-cert" id="cert-nanny">👶 Nanny Certified</div>
+    </div>
+  </section>
+
+  <!-- ══ 7. DECISION ══ -->
+  <section class="decision" id="decision">
+    <div id="cta-pending">
+      <h2>Is this the right match for you?</h2>
+      <p>We reviewed your request and found this Etalem service provider for you. Review the profile above, then let us know your decision.</p>
+      <div class="nocall"><i class="fas fa-phone-slash"></i> No need to call — just tap a button</div>
+      <div class="btns">
+        <button class="btn btn-approve" onclick="handleCustomerAction('approved')">✅ Approve Profile</button>
+        <button class="btn btn-reject" onclick="handleCustomerAction('rejected')">❌ Reject Profile</button>
+      </div>
+    </div>
+    <div class="responded" id="cta-responded">
+      <div class="em" id="responded-emoji">✅</div>
+      <div class="t" id="responded-title">Response Submitted</div>
+      <div class="m" id="responded-message">Thank you! Your response has been recorded.</div>
+    </div>
+    <div class="submitting" id="cta-submitting"><i class="fas fa-circle-notch fa-spin" style="color:#E21E81;margin-right:.5rem"></i> Submitting your response...</div>
+  </section>
+
+</div>
+
+<!-- modal -->
+<div id="confirm-overlay">
+  <div class="confirm-card">
+    <div class="confirm-emoji" id="modal-emoji">✅</div>
+    <div class="confirm-title" id="modal-title"></div>
+    <div class="confirm-desc" id="modal-desc"></div>
+    <div class="reason-wrap" id="reason-wrapper">
+      <label>Reason for rejection <span>*</span></label>
+      <textarea id="reject-reason" maxlength="50" placeholder="e.g. Experience does not match our requirement..."></textarea>
+      <div style="text-align:right;font-size:.75rem;color:#9a9eac;margin-top:.25rem"><span id="reason-counter">0</span> / 50</div>
+      <div class="reason-error" id="reason-error">Please provide a reason before submitting.</div>
+    </div>
+    <div class="confirm-actions">
+      <button class="btn-cancel" onclick="closeConfirmModal()">Cancel</button>
+      <button class="btn-confirm" id="modal-confirm-btn" onclick="submitCustomerAction()">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ CMS DATA (sample data for mockup) ═══════════════
+     NEW fields for the workflow are marked [NEW] -->
+<div id="cms-data" style="display:none" aria-hidden="true">
+  <span id="d-name">Sample Provider</span>
+  <span id="d-photo">data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='380'%3E%3Crect width='300' height='380' fill='%23e9e6df'/%3E%3Ccircle cx='150' cy='140' r='60' fill='%23c9c4b8'/%3E%3Cellipse cx='150' cy='330' rx='100' ry='100' fill='%23c9c4b8'/%3E%3C/svg%3E</span>
+  <span id="d-service">Cooking · Cleaning</span>
+  <span id="d-age">29</span>
+  <span id="d-languages">Amharic, English</span>
+  <span id="d-location">Bole, Addis Ababa</span><!-- [NEW] -->
+  <span id="d-generated">2026-10-20T09:00:00Z</span>
+  <span id="d-breakfast">Eggs (scrambled, fried, omelette), pancakes, firfir, chechebsa, fresh juices.</span>
+  <span id="d-lunch">Traditional stews (doro wat, shiro, misir), pasta, rice dishes, grilled meats and salads.</span>
+  <span id="d-work-exp">2 years</span>
+  <span id="d-cooking-exp">5 years</span>
+  <span id="d-cleaning-exp">4 years</span>
+  <span id="d-nanny-exp"></span>
+  <span id="d-total-exp-years">5</span><!-- [NEW] number, shown in stats strip -->
+  <span id="d-has-cooking-cert">true</span>
+  <span id="d-has-cleaning-cert">true</span>
+  <span id="d-has-nanny-cert">false</span>
+  <span id="d-show-cooking">true</span>
+  <span id="d-show-cleaning">true</span>
+  <span id="d-show-nanny">false</span>
+  <span id="d-bio">Reliable and warm service provider with a strong background in home cooking and deep cleaning. Known for punctuality, clear communication and attention to detail.</span>
+  <!-- [NEW] one job per line:  Role | Institution (optional) | Period | Description (optional) -->
+  <span id="d-experience-history">Head Cook | Sample Hotel & Suites | 2022 – 2024 | Prepared daily menus for 40+ guests.
+Housekeeper | Private household, Bole | 2020 – 2022 | Full-time cleaning, laundry and ironing.</span>
+  <span id="d-pa-ticket-key">PA-0000</span>
+  <span id="d-jira-ticket-id">0000</span>
+  <span id="d-customer-response">pending</span>
+</div>
+<div style="display:none" aria-hidden="true">
+  <span id="d-special">Hosting for up to 15 guests, coffee ceremony, holiday menus.</span>
+  <span id="d-extra-cooking">Baking (bread, cakes), weekly meal prep, dietary-specific cooking.</span>
+  <!-- [NEW] skills as comma-separated lists, rendered as chips -->
+  <span id="d-cooking-skills">Ethiopian cuisine, Baking, Meal prep, Grilling, Vegetarian dishes</span>
+  <span id="d-cleaning-skills">Deep cleaning, Laundry &amp; ironing, Kitchen sanitising, Window cleaning, Organising</span>
+  <span id="d-nanny-skills"></span>
+  <span id="d-job-sessions-completed">48</span>
+  <span id="d-customers-served">17</span>
+  <span id="d-rating-punctuality">4.8</span>
+  <span id="d-rating-professionalism">5</span>
+  <span id="d-rating-attention">4.5</span>
+  <span id="d-rating-quality-cleaning">4.7</span>
+  <span id="d-rating-care-furniture">4.5</span>
+  <span id="d-rating-flavor">4.9</span>
+  <span id="d-rating-variety">4.6</span>
+  <span id="d-rating-hygienic-prep">5</span>
+  <span id="d-rating-child-needs"></span>
+  <span id="d-rating-child-food"></span>
+  <span id="d-rating-hygiene-cleanliness"></span>
+</div>
+
+<script>
+(function(){
+  const g = id => (document.getElementById(id)?.textContent || '').trim();
+  const $ = id => document.getElementById(id);
+  const set = (id,v) => { const e=$(id); if(e) e.textContent=v; };
+  const hide = id => $(id)?.classList.add('hidden');
+  const empty = v => !v || !String(v).trim();
+  const num = v => { const n=Number(v); return isNaN(n)?null:n; };
+  const esc = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  function fmtDate(s){ if(!s) return ''; const d=new Date(s); if(isNaN(d)) return s;
+    return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear(); }
+  let starUid=0;
+  function stars(n){
+    n=Math.min(5,Math.max(0,n)); const r=Math.round(n*2)/2;
+    const P='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z';
+    let o='';
+    for(let i=1;i<=5;i++){
+      const fill = r>=i ? 1 : (r>=i-0.5 ? 0.5 : 0);
+      const id='sg'+(starUid++);
+      o+=`<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-.12em" aria-hidden="true">
+        <defs><clipPath id="${id}"><rect x="0" y="0" width="${24*fill}" height="24"/></clipPath></defs>
+        <path d="${P}" fill="#d4d4d8"/>
+        <path d="${P}" fill="#f5b342" clip-path="url(#${id})"/></svg>`;
+    }
+    return o; }
+  function chips(listStr, cls, icon){
+    return listStr.split(/[,;\n]/).map(s=>s.trim()).filter(Boolean)
+      .map(s=>`<span class="chip ${cls}"><i class="fas ${icon}"></i>${esc(s)}</span>`).join('');
+  }
+
+  const showCook=g('d-show-cooking')==='true', showClean=g('d-show-cleaning')==='true', showNanny=g('d-show-nanny')==='true';
+
+  /* hero */
+  set('sp-name-el',g('d-name')); set('sp-service-el',g('d-service'));
+  if(!empty(g('d-photo'))) $('sp-photo').src=g('d-photo');
+  if(!empty(g('d-age'))) set('sp-age',g('d-age')); else hide('age-chip');
+  set('sp-languages', g('d-languages') || 'Amharic');
+  if(!empty(g('d-location'))) set('sp-location',g('d-location')); else hide('loc-chip');
+  if(!empty(g('d-generated'))) set('generated-date-display',fmtDate(g('d-generated'))); else $('generated-badge').style.display='none';
+
+  /* stats */
+  const totalExp=num(g('d-total-exp-years')), sess=num(g('d-job-sessions-completed')), cust=num(g('d-customers-served'));
+  if(totalExp>0) set('stat-exp-val',totalExp+'+'); else hide('stat-exp');
+  if(sess>0) set('job-sessions-val',sess); else hide('job-sessions-box');
+  if(cust>0) set('customers-served-val',cust); else hide('customers-served-box');
+  if(!(totalExp>0)&&!(sess>0)&&!(cust>0)) hide('stats');
+
+  /* bio */
+  if(!empty(g('d-bio'))) set('bio-text',g('d-bio')); else hide('bio-card');
+
+  /* skills chips */
+  const groups=[
+    ['cooking',showCook,'d-cooking-skills','d-cooking-exp','cook','fa-check'],
+    ['cleaning',showClean,'d-cleaning-skills','d-cleaning-exp','clean','fa-check'],
+    ['nanny',showNanny,'d-nanny-skills','d-nanny-exp','nanny','fa-check']
+  ];
+  let anySkills=false;
+  groups.forEach(([k,show,skillsId,expId,cls,ic])=>{
+    const s=g(skillsId);
+    if(show && !empty(s)){
+      $('chips-'+k).innerHTML=chips(s,cls,ic);
+      if(!empty(g(expId))) set(k+'-exp-pill',g(expId)+' experience'); else $(k+'-exp-pill').style.display='none';
+      anySkills=true;
+    } else hide('grp-'+k);
+  });
+  if(!anySkills) hide('skills-card');
+
+  /* ratings */
+  const defs=[['Punctuality & Time Management','d-rating-punctuality',true],
+    ['Professionalism & Politeness','d-rating-professionalism',true],
+    ['Attention to Detail and Following Instructions','d-rating-attention',true],
+    ['Quality of Cleaning','d-rating-quality-cleaning',showClean],
+    ['Handling Furniture and Items with Care','d-rating-care-furniture',showClean],
+    ['Flavor / Taste of Food','d-rating-flavor',showCook],
+    ['Variety & Portion of Food','d-rating-variety',showCook],
+    ['Hygienic Preparation','d-rating-hygienic-prep',showCook],
+    ["Handling Child's Emotional and Physical Needs",'d-rating-child-needs',showNanny],
+    ['Quality of Food Preparation for a Child','d-rating-child-food',showNanny],
+    ['Hygiene and Cleanliness of Nanny','d-rating-hygiene-cleanliness',showNanny]];
+  let html='', sum=0, cnt=0;
+  defs.forEach(([label,key,on])=>{
+    const v=num(g(key)); if(!on||v===null||v<=0) return;
+    sum+=v; cnt++;
+    html+=`<div class="rating-row"><div class="r-label">${esc(label)}</div>
+      <div class="r-stars">${stars(v)}<span class="r-num">${v}/5</span></div></div>`;
+  });
+  if(cnt){
+    $('rating-container').innerHTML=html;
+  } else hide('skill-rating-card');
+
+  /* experience history */
+  const hist=g('d-experience-history').split('\n').map(l=>l.trim()).filter(Boolean);
+  if(hist.length){
+    $('timeline').innerHTML=hist.map(line=>{
+      const [role,inst,period,desc]=line.split('|').map(s=>(s||'').trim());
+      return `<div class="tl-item"><div class="tl-card">
+        <div class="tl-role">${esc(role)}</div>
+        ${inst?`<div class="tl-inst"><i class="fas fa-building"></i>${esc(inst)}</div>`:''}
+        ${period?`<div class="tl-period"><i class="far fa-calendar"></i>${esc(period)}</div>`:''}
+        ${desc?`<div class="tl-desc">${esc(desc)}</div>`:''}
+      </div></div>`;
+    }).join('');
+  } else hide('history-card');
+
+  /* cooking profile */
+  const cookData=[['breakfast-item','breakfast-val','d-breakfast'],['lunch-item','lunch-val','d-lunch'],
+    ['special-item','special-val','d-special'],['extra-cooking-item','extra-cooking-val','d-extra-cooking']];
+  if(showCook && cookData.some(c=>!empty(g(c[2])))){
+    cookData.forEach(([item,val,src])=>{ if(!empty(g(src))) set(val,g(src)); else hide(item); });
+  } else hide('cooking-card');
+
+  /* certs */
+  let anyCert=false;
+  [['d-has-cooking-cert','cert-cooking'],['d-has-cleaning-cert','cert-cleaning'],['d-has-nanny-cert','cert-nanny']]
+    .forEach(([src,el])=>{ if(g(src)==='true'){ $(el).classList.add('show'); anyCert=true; } });
+  if(!anyCert) hide('certs-card');
+
+  /* ── decision logic (mockup: webhook call stubbed) ── */
+  let pending='';
+  function showState(s){
+    $('cta-pending').style.display = s==='pending'?'block':'none';
+    $('cta-responded').style.display = s==='responded'?'block':'none';
+    $('cta-submitting').style.display = s==='submitting'?'block':'none';
+  }
+  function responded(a){
+    if(a==='approved'){ $('responded-emoji').textContent='✅'; set('responded-title','Profile Approved'); set('responded-message','Thank you! You have approved this Service Provider. Our team will contact you shortly to confirm your booking.'); }
+    else if(a==='rejected'){ $('responded-emoji').textContent='❌'; set('responded-title','Profile Rejected'); set('responded-message','Thank you for your response. We will find a better match for you and be in touch soon.'); }
+    else { $('responded-emoji').textContent='🔒'; set('responded-title','Response Already Submitted'); set('responded-message','Your response has already been recorded. Our team will be in touch shortly.'); }
+    showState('responded');
+  }
+  const prior=g('d-customer-response');
+  if(prior && prior!=='pending') responded(prior);
+
+  window.handleCustomerAction=function(a){
+    pending=a;
+    const ok=a==='approved', btn=$('modal-confirm-btn');
+    $('modal-emoji').textContent=ok?'✅':'❌';
+    set('modal-title', ok?'Approve this profile?':'Reject this profile?');
+    set('modal-desc', ok?'You are about to approve this Service Provider. Our team will reach out to confirm your booking shortly.'
+      :'Please provide a valid reason for rejection. Note that rejecting may cause a delay in your service start date.');
+    btn.style.background = ok?'linear-gradient(135deg,#22c55e,#16a34a)':'linear-gradient(135deg,#ef4444,#dc2626)';
+    btn.textContent = ok?'Yes, Approve':'Yes, Reject';
+    $('reason-wrapper').style.display = ok?'none':'block';
+    $('reject-reason').value=''; $('reason-error').style.display='none'; set('reason-counter','0');
+    $('reject-reason').oninput=function(){ set('reason-counter',this.value.length); };
+    $('confirm-overlay').classList.add('show');
+  };
+  window.closeConfirmModal=function(){ $('confirm-overlay').classList.remove('show'); pending=''; };
+  window.submitCustomerAction=function(){
+    if(pending==='rejected' && !$('reject-reason').value.trim()){ $('reason-error').style.display='block'; return; }
+    const a=pending; $('confirm-overlay').classList.remove('show'); showState('submitting');
+    setTimeout(()=>{ responded(a); window.scrollTo({top:document.getElementById('decision').offsetTop-20,behavior:'smooth'}); },600); // MOCKUP ONLY: real page POSTs to n8n webhook
+  };
+  $('confirm-overlay').addEventListener('click',e=>{ if(e.target===e.currentTarget) closeConfirmModal(); });
+})();
+</script>
+</body>
+</html>
