@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<!-- press-effect v3 (ripple + shadows) -->
+<!-- Design 2.0 (press effect on cards, chips and buttons + press-to-confirm decision) -->
 <title>Service Provider Profile | Verified by GoodayOn</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -35,15 +35,12 @@ body{font-family:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 .meta-chip.hidden{display:none}
 .generated{margin-top:.9rem;font-size:.75rem;color:#9a9eac;display:flex;align-items:center;gap:.4rem}
 
-
 /* stats strip */
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:1.5rem}
 .stat{background:#fff;border:1px solid var(--line);border-radius:1.2rem;padding:.85rem .5rem;text-align:center}
 .stat .num{font-size:1.5rem;font-weight:800;color:var(--brand);line-height:1.1}
 .stat .txt{font-size:.7rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-top:.2rem}
 .stat.hidden{display:none}
-
-
 
 /* watermark stamp (original design) */
 .watermark-stamp-centered{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-12deg);width:300px;height:auto;z-index:10;pointer-events:none;opacity:.32;filter:drop-shadow(0 4px 8px rgba(0,0,0,.1))}
@@ -60,7 +57,6 @@ body{font-family:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 .info-item.hidden{display:none}
 .loc-row{margin-top:.5rem}
 .hero-info .meta-row{margin-bottom:0}
-
 
 /* section cards */
 .section{background:var(--card);border-radius:1.75rem;border:1px solid rgba(255,255,255,.95);box-shadow:0 0 0 1px rgba(255,255,255,.9),0 1px 2px rgba(16,24,40,.06),0 10px 28px rgba(16,24,40,.10);padding:1.5rem 1.75rem;margin-bottom:1rem}
@@ -123,12 +119,13 @@ body{font-family:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 /* decision */
 .decision{background:#fff;border:1px solid rgba(255,255,255,.95);box-shadow:0 0 0 1px rgba(255,255,255,.9),0 1px 2px rgba(16,24,40,.06),0 10px 28px rgba(16,24,40,.10);border-radius:1.75rem;padding:2rem 1.5rem;text-align:center;margin-bottom:1rem;scroll-margin-top:1rem}
 .decision h2{font-size:1.35rem;font-weight:800;margin-bottom:.4rem}
-.decision p{font-size:.92rem;color:var(--muted);margin:0 auto 1.4rem;max-width:520px}
-.decision .nocall{display:inline-flex;align-items:center;gap:.5rem;background:#fff7e6;color:#8a5a00;font-size:.82rem;font-weight:700;padding:.4rem 1rem;border-radius:40px;margin-bottom:1.25rem}
+.decision p{font-size:.92rem;color:var(--muted);margin:0 auto 1.2rem;max-width:520px}
+.decision .nocall{display:flex;align-items:center;justify-content:center;gap:.7rem;max-width:520px;margin:0 auto 1.4rem;background:var(--brand-soft);border:1px solid rgba(226,30,129,.2);color:#5a1740;font-size:.88rem;font-weight:600;line-height:1.5;text-align:left;padding:.75rem 1.1rem;border-radius:1.1rem}
+.decision .nocall i{color:var(--brand);font-size:1.05rem;flex-shrink:0}
+.decision .nocall b{color:#a8135f}
 .btns{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
 .btns .btn{flex:1 1 220px;max-width:260px;min-width:0;text-align:center;padding:.95rem 1rem;white-space:nowrap}
-.btn{border:none;cursor:pointer;padding:.95rem 2.2rem;border-radius:100px;font:700 1rem 'DM Sans',sans-serif;color:#fff;transition:transform .2s,opacity .2s}
-.btn:hover{transform:translateY(-2px);opacity:.92}
+.btn{border:none;cursor:pointer;padding:.95rem 2.2rem;border-radius:100px;font:700 1rem 'DM Sans',sans-serif;color:#fff}
 .btn-approve{background:linear-gradient(135deg,#22c55e,#16a34a);box-shadow:0 6px 16px rgba(34,197,94,.35)}
 .btn-reject{background:linear-gradient(135deg,#ef4444,#dc2626);box-shadow:0 6px 16px rgba(239,68,68,.3)}
 .responded,.submitting{display:none}
@@ -137,21 +134,29 @@ body{font-family:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 .responded .m{font-size:.92rem;color:var(--muted)}
 .submitting{color:var(--muted)}
 
-/* press effect */
+/* ── Press effect: cards, chips, pills, stats, badges and buttons ── */
 html{-webkit-tap-highlight-color:transparent}
-.hero,.section{cursor:pointer;transition:transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .3s ease}
-.hero.pressed,.section.pressed{transform:scale(.95);box-shadow:0 0 0 1px rgba(255,255,255,.9),0 1px 2px rgba(16,24,40,.08),0 3px 8px rgba(16,24,40,.10);transition:transform .12s ease-out,box-shadow .12s ease-out}
-.btn{transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .2s,box-shadow .2s}
+.hero,.section,.decision,.chip,.meta-chip,.info-pill,.stat,.cert-badge,.btn{
+  position:relative;overflow:hidden;cursor:pointer;
+  transition:transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .3s ease,opacity .2s;
+}
+/* hover lift (mouse only) */
+@media (hover:hover){
+  .hero:hover,.section:hover,.decision:hover{transform:translateY(-3px);box-shadow:0 0 0 1px rgba(255,255,255,.9),0 2px 4px rgba(16,24,40,.06),0 18px 36px -10px rgba(16,24,40,.18)}
+  .chip:hover,.meta-chip:hover,.info-pill:hover,.stat:hover,.cert-badge:hover{transform:translateY(-2px);box-shadow:0 8px 16px -6px rgba(226,30,129,.3)}
+  .btn:hover{transform:translateY(-2px);opacity:.92}
+}
+/* pressed state (comes after hover so it always wins) */
+.hero.pressed,.section.pressed,.decision.pressed{transform:scale(.95);box-shadow:0 0 0 1px rgba(255,255,255,.9),0 1px 2px rgba(16,24,40,.08),0 3px 8px rgba(16,24,40,.10);transition:transform .12s ease-out,box-shadow .12s ease-out}
+.chip.pressed,.meta-chip.pressed,.info-pill.pressed,.stat.pressed,.cert-badge.pressed{transform:scale(.9);transition:transform .1s ease-out}
 .btn.pressed,.btn:active{transform:scale(.93);box-shadow:0 2px 6px rgba(0,0,0,.2);transition:transform .1s ease-out}
-.hero,.section{overflow:hidden}
-.btn{position:relative;overflow:hidden}
 .ripple{position:absolute;border-radius:50%;pointer-events:none;background:rgba(226,30,129,.16);transform:scale(0);opacity:1;animation:ripple .7s ease-out forwards;z-index:0}
-.btn .ripple{background:rgba(255,255,255,.45)}
+.btn .ripple,.meta-chip.location .ripple,.info-pill .ripple{background:rgba(255,255,255,.45)}
 @keyframes ripple{to{transform:scale(1);opacity:0}}
 @media (prefers-reduced-motion:reduce){
   .ripple{display:none}
-  .hero,.section,.btn{transition:none}
-  .hero.pressed,.section.pressed,.btn.pressed,.btn:active{transform:none}
+  .hero,.section,.decision,.chip,.meta-chip,.info-pill,.stat,.cert-badge,.btn{transition:none}
+  .hero.pressed,.section.pressed,.decision.pressed,.chip.pressed,.meta-chip.pressed,.info-pill.pressed,.stat.pressed,.cert-badge.pressed,.btn.pressed,.btn:active{transform:none}
 }
 
 /* modal */
@@ -200,7 +205,6 @@ html{-webkit-tap-highlight-color:transparent}
   <div class="watermark-stamp-centered">
     <img src="https://cdn.prod.website-files.com/676010d97530c2cd3340241e/69d3c48d0007d079af8acc30_Black%20and%20White%20Circle%20Professional%20Stamp%20Logo.png" alt="Verified Stamp">
   </div>
-
 
   <!-- ══ HERO ══ -->
   <header class="hero" id="hero">
@@ -286,8 +290,8 @@ html{-webkit-tap-highlight-color:transparent}
   <section class="decision" id="decision">
     <div id="cta-pending">
       <h2>Is this the right match for you?</h2>
-      <p>We reviewed your request and found this Etalem service provider for you. Review the profile above, then let us know your decision.</p>
-      <div class="nocall"><i class="fas fa-phone-slash"></i> No need to call — just tap a button</div>
+      <p>We reviewed your request and found this Etalem service provider for you. Review the profile above, then confirm your decision below.</p>
+      <div class="nocall"><i class="fas fa-hand-pointer"></i><span>No need to call us. Just press <b>Approve</b> or <b>Reject</b> to confirm your decision.</span></div>
       <div class="btns">
         <button class="btn btn-approve" onclick="handleCustomerAction('approved')">✅ Approve Profile</button>
         <button class="btn btn-reject" onclick="handleCustomerAction('rejected')">❌ Reject Profile</button>
@@ -538,27 +542,39 @@ Housekeeper | Private household, Bole | 2020 – 2022 | Full-time cleaning, laun
     const a=pending; $('confirm-overlay').classList.remove('show'); showState('submitting');
     setTimeout(()=>{ responded(a); window.scrollTo({top:document.getElementById('decision').offsetTop-20,behavior:'smooth'}); },600); // MOCKUP ONLY: real page POSTs to n8n webhook
   };
-  /* press effect: stays visible for a minimum time so even a quick tap is noticed */
+
+  /* press effect: one listener, innermost element (chip, badge, stat, card or button) gets pressed.
+     The pressed look stays for a minimum time so even a quick tap is noticed. */
   (function(){
-    const MIN=260;
-    document.querySelectorAll('.hero,.section,.btn').forEach(function(el){
-      let t0=0, timer=null;
-      function ripple(e){
-        const r=el.getBoundingClientRect(), d=Math.max(r.width,r.height)*2;
-        const dot=document.createElement('span');
-        dot.className='ripple';
-        dot.style.width=dot.style.height=d+'px';
-        dot.style.left=(e.clientX-r.left-d/2)+'px';
-        dot.style.top=(e.clientY-r.top-d/2)+'px';
-        el.appendChild(dot);
-        setTimeout(function(){ dot.remove(); },750);
-      }
-      function down(e){ clearTimeout(timer); t0=Date.now(); el.classList.add('pressed'); ripple(e); }
-      function up(){ const wait=Math.max(0,MIN-(Date.now()-t0)); clearTimeout(timer); timer=setTimeout(function(){ el.classList.remove('pressed'); },wait); }
-      el.addEventListener('pointerdown',down);
-      ['pointerup','pointercancel','pointerleave'].forEach(function(ev){ el.addEventListener(ev,up); });
-    });
+    const MIN=260, SEL='.btn,.chip,.meta-chip,.info-pill,.stat,.cert-badge,.hero,.section,.decision';
+    const state=new WeakMap(); let last=null;
+    function ripple(el,e){
+      const r=el.getBoundingClientRect(), d=Math.max(r.width,r.height)*2;
+      const dot=document.createElement('span');
+      dot.className='ripple';
+      dot.style.width=dot.style.height=d+'px';
+      dot.style.left=(e.clientX-r.left-d/2)+'px';
+      dot.style.top=(e.clientY-r.top-d/2)+'px';
+      el.appendChild(dot);
+      setTimeout(function(){ dot.remove(); },750);
+    }
+    function down(e){
+      const el=e.target.closest(SEL); if(!el) return;
+      const s=state.get(el)||{}; clearTimeout(s.timer); s.t0=Date.now(); state.set(el,s);
+      el.classList.add('pressed'); ripple(el,e); last=el;
+    }
+    function up(){
+      if(!last) return;
+      const el=last, s=state.get(el); last=null;
+      const wait=Math.max(0,MIN-(Date.now()-s.t0));
+      clearTimeout(s.timer);
+      s.timer=setTimeout(function(){ el.classList.remove('pressed'); },wait);
+    }
+    document.addEventListener('pointerdown',down);
+    document.addEventListener('pointerup',up);
+    document.addEventListener('pointercancel',up);
   })();
+
   $('confirm-overlay').addEventListener('click',e=>{ if(e.target===e.currentTarget) closeConfirmModal(); });
 })();
 </script>
