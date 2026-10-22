@@ -10,7 +10,7 @@
 :root{
   --brand:#E21E81; --brand-dark:#c2186f; --brand-soft:rgba(226,30,129,.08);
   --ink:#1a1e2b; --muted:#6b6f7c; --line:rgba(0,0,0,.07);
-  --bg:#f6f4ef; --card:#fff; --gold:#f5b342;
+  --bg:#eeebe4; --card:#fff; --gold:#f5b342;
   --green:#16a34a; --red:#dc2626;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -19,8 +19,9 @@ body{font-family:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 .page{max-width:880px;margin:0 auto;padding:1.25rem 1.25rem 2rem}
 
 /* ── Hero ── */
-.hero{position:relative;background:linear-gradient(135deg,#fff 55%,#fff0f7 100%);border-radius:2rem;padding:2rem;border:1px solid rgba(226,30,129,.12);box-shadow:0 12px 32px -14px rgba(226,30,129,.25);overflow:hidden;margin-bottom:1rem}
+.hero{position:relative;background:#fff;border-radius:2rem;padding:2rem;border:1px solid rgba(255,255,255,.95);box-shadow:0 0 0 1px rgba(0,0,0,.03),0 10px 30px rgba(255,255,255,.95),0 2px 10px rgba(0,0,0,.05);overflow:hidden;margin-bottom:1rem}
 .hero-top{display:flex;gap:2rem;align-items:center}
+.photo-fallback{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#E21E81,#c2186f);color:#fff;font-size:2.6rem;font-weight:800;letter-spacing:.02em}
 .photo{width:150px;height:190px;object-fit:cover;object-position:top;border-radius:1.5rem;background:#e9e6df;box-shadow:0 14px 28px -12px rgba(0,0,0,.25);border:3px solid #fff;flex-shrink:0}
 .hero-info{flex:1;min-width:0}
 .sp-name{font-size:2rem;font-weight:800;letter-spacing:-.02em;line-height:1.15;background:linear-gradient(135deg,var(--brand),var(--brand-dark));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:.35rem}
@@ -61,7 +62,7 @@ body{font-family:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 
 
 /* section cards */
-.section{background:var(--card);border-radius:1.75rem;border:1px solid rgba(226,30,129,.08);box-shadow:0 8px 24px rgba(0,0,0,.025);padding:1.5rem 1.75rem;margin-bottom:1rem}
+.section{background:var(--card);border-radius:1.75rem;border:1px solid rgba(255,255,255,.95);box-shadow:0 0 0 1px rgba(0,0,0,.03),0 10px 30px rgba(255,255,255,.95),0 2px 10px rgba(0,0,0,.05);padding:1.5rem 1.75rem;margin-bottom:1rem}
 .section.hidden{display:none}
 .sec-head{display:flex;align-items:center;gap:.75rem;margin-bottom:1.1rem;padding-bottom:.85rem;border-bottom:1px dashed var(--line)}
 .sec-icon{width:38px;height:38px;border-radius:12px;background:var(--brand-soft);color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:.95rem}
@@ -119,7 +120,7 @@ body{font-family:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 .cert-badge.nanny-cert{background:#e8f0fe;color:#1f6392}
 
 /* decision */
-.decision{background:linear-gradient(135deg,#fff 40%,#fff0f7);border:2px solid rgba(226,30,129,.2);border-radius:1.75rem;padding:2rem 1.5rem;text-align:center;margin-bottom:1rem;scroll-margin-top:1rem}
+.decision{background:#fff;border:1px solid rgba(255,255,255,.95);box-shadow:0 0 0 1px rgba(0,0,0,.03),0 10px 30px rgba(255,255,255,.95),0 2px 10px rgba(0,0,0,.05);border-radius:1.75rem;padding:2rem 1.5rem;text-align:center;margin-bottom:1rem;scroll-margin-top:1rem}
 .decision h2{font-size:1.35rem;font-weight:800;margin-bottom:.4rem}
 .decision p{font-size:.92rem;color:var(--muted);margin:0 auto 1.4rem;max-width:520px}
 .decision .nocall{display:inline-flex;align-items:center;gap:.5rem;background:#fff7e6;color:#8a5a00;font-size:.82rem;font-weight:700;padding:.4rem 1rem;border-radius:40px;margin-bottom:1.25rem}
@@ -186,7 +187,8 @@ body{font-family:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   <!-- ══ HERO ══ -->
   <header class="hero" id="hero">
     <div class="hero-top">
-      <img class="photo" id="sp-photo" src="" alt="Service provider photo" onerror="this.style.display='none'">
+      <img class="photo" id="sp-photo" alt="Service provider photo" style="display:none">
+      <div class="photo photo-fallback" id="sp-photo-fallback"><span id="sp-initials"></span></div>
       <div class="hero-info">
         <div class="sp-name" id="sp-name-el"></div>
         <div class="sp-title" id="sp-service-el"></div>
@@ -216,13 +218,13 @@ body{font-family:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 
   <!-- ══ 2. SKILLS ══ -->
   <section class="section" id="skills-card">
-    <div class="sec-head"><div class="sec-icon"><i class="fas fa-bolt"></i></div><div><div class="sec-title">Skills</div><div class="sec-sub">What this provider does best</div></div></div>
+    <div class="sec-head"><div class="sec-icon"><i class="fas fa-award"></i></div><div><div class="sec-title">Skills</div><div class="sec-sub">What this provider does best</div></div></div>
     <div class="skill-group" id="grp-cooking">
       <div class="group-label"><i class="fas fa-utensils"></i> Cooking <span class="exp-pill" id="cooking-exp-pill"></span></div>
       <div class="chips" id="chips-cooking"></div>
     </div>
     <div class="skill-group" id="grp-cleaning">
-      <div class="group-label"><i class="fas fa-broom"></i> Cleaning <span class="exp-pill" id="cleaning-exp-pill"></span></div>
+      <div class="group-label"><i class="fas fa-spray-can-sparkles"></i> Cleaning <span class="exp-pill" id="cleaning-exp-pill"></span></div>
       <div class="chips" id="chips-cleaning"></div>
     </div>
     <div class="skill-group" id="grp-nanny">
@@ -390,7 +392,16 @@ Housekeeper | Private household, Bole | 2020 – 2022 | Full-time cleaning, laun
 
   /* hero */
   set('sp-name-el',g('d-name')); set('sp-service-el',g('d-service'));
-  if(!empty(g('d-photo'))) $('sp-photo').src=g('d-photo');
+  (function(){
+    const img=$('sp-photo'), fb=$('sp-photo-fallback'), url=g('d-photo');
+    const nm=g('d-name').split(/\s+/).filter(Boolean);
+    set('sp-initials', ((nm[0]||'')[0]||'')+((nm[1]||'')[0]||''));
+    if(!empty(url)){
+      img.onload=function(){ img.style.display='block'; fb.style.display='none'; };
+      img.onerror=function(){ img.style.display='none'; fb.style.display='flex'; };
+      img.src=url;
+    }
+  })();
   if(!empty(g('d-age'))) set('sp-age',g('d-age')); else hide('age-chip');
   set('sp-languages', g('d-languages') || 'Amharic');
   if(!empty(g('d-location'))) set('sp-location',g('d-location')); else hide('loc-chip');
